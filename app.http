@@ -46,3 +46,17 @@ GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/links
 
 ### GET PARTICIPANTS
 GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/participants
+
+
+# INVITE
+
+### CREATE INVITE
+POST http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/invites
+Content-Type: application/json
+
+{
+  "email": "johndoe@gmail.com"
+}
+
+### GET PARTICIPANTS
+GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/participants
