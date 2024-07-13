@@ -31,3 +31,12 @@ Content-Type: application/json
 
 ### GET ACTIVITIES
 GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/activities
+
+### CREATE LINK
+POST http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/links
+Content-Type: application/json
+
+{
+  "title": "Site do MASP",
+  "url": "https://masp.org.br"
+}
