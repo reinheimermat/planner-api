@@ -9,6 +9,7 @@ import { ZodError } from 'zod'
 import { env } from './env'
 import { confirmParticipant } from './routes/confirm-participant'
 import { confirmTrip } from './routes/confirm-trip'
+import { createActivity } from './routes/create-activity'
 import { createTrip } from './routes/create-trip'
 
 export const app = fastify()
@@ -21,6 +22,8 @@ app.register(createTrip)
 app.register(confirmTrip)
 
 app.register(confirmParticipant)
+
+app.register(createActivity)
 
 app.register(cors, {
   origin: '*',
