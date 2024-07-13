@@ -14,6 +14,7 @@ import { createLink } from './routes/create-link'
 import { createTrip } from './routes/create-trip'
 import { getActivities } from './routes/get-activities'
 import { getLinks } from './routes/get-links'
+import { getParticipants } from './routes/get-participants'
 
 export const app = fastify()
 
@@ -33,6 +34,8 @@ app.register(getActivities)
 app.register(createLink)
 
 app.register(getLinks)
+
+app.register(getParticipants)
 
 app.register(cors, {
   origin: '*',
