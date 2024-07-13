@@ -1,4 +1,4 @@
-### POST
+### CREATE TRIP
 POST http://localhost:3333/trips
 Content-Type: application/json
 
@@ -13,3 +13,6 @@ Content-Type: application/json
     "johndoe@acme.com"
   ]
 }
+
+### CONFIRM TRIP
+GET http://localhost:3333/trips/1fbc0ae8-1cbe-4cc0-bf84-92b3a5b7212a/confirm
