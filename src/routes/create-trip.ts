@@ -2,8 +2,10 @@
 import dayjs from 'dayjs'
 import type { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
+import nodemailer from 'nodemailer'
 import z from 'zod'
 
+import { getMailClient } from '../lib/mail'
 import { prisma } from '../lib/prisma'
 
 export async function createTrip(app: FastifyInstance) {
@@ -15,18 +17,21 @@ export async function createTrip(app: FastifyInstance) {
           destination: z.string().min(4),
           starts_at: z.coerce.date(),
           ends_at: z.coerce.date(),
+          owner_name: z.string(),
+          owner_email: z.string().email(),
         }),
       },
     },
     async (request) => {
-      const { destination, starts_at, ends_at } = request.body
+      const { destination, starts_at, ends_at, owner_name, owner_email } =
+        request.body
 
       if (dayjs(starts_at).isBefore(new Date())) {
-        throw new Error('Start date must be in the future')
+        throw new Error('Invalid start date')
       }
 
-      if (dayjs(ends_at).isBefore(dayjs(starts_at))) {
-        throw new Error('End date must be after start date')
+      if (dayjs(ends_at).isBefore(starts_at)) {
+        throw new Error('End date must be after the start date')
       }
 
       const trip = await prisma.trip.create({
@@ -36,6 +41,23 @@ export async function createTrip(app: FastifyInstance) {
           ends_at,
         },
       })
+
+      const mail = await getMailClient()
+
+      const message = await mail.sendMail({
+        from: {
+          name: 'Equipe Planner',
+          address: 'oi@plann.er',
+        },
+        to: {
+          name: owner_name,
+          address: owner_email,
+        },
+        subject: 'Viagem criada com sucesso',
+        html: `<p>Teste do envio de email</p>`,
+      })
+
+      console.log(nodemailer.getTestMessageUrl(message))
 
       return { tripId: trip.id }
     },
