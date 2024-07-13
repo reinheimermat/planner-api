@@ -3,7 +3,13 @@ POST http://localhost:3333/trips
 Content-Type: application/json
 
 {
-  "destination": "Paris",
-  "starts_at": "2024-12-01",
-  "ends_at": "2024-12-31"
+  "destination": "Floriánopolis",
+  "starts_at": "2024-07-10T18:00:00",
+  "ends_at": "2024-07-20T18:00:00",
+  "owner_name": "Matheus Reinheimer",
+  "owner_email": "mreinheimer0@gmail.com",
+  "emails_to_invite": [
+    "mreinheimer0@gmail.com",
+    "johndoe@acme.com"
+  ]
 }
