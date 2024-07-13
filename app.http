@@ -16,3 +16,6 @@ Content-Type: application/json
 
 ### CONFIRM TRIP
 GET http://localhost:3333/trips/1fbc0ae8-1cbe-4cc0-bf84-92b3a5b7212a/confirm
+
+### CONFIRM PARTICIPANT
+GET http://localhost:3333/participants/ba41b33e-23d8-45e7-99e1-69f488a65241/confirm

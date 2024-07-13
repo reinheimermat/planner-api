@@ -7,6 +7,7 @@ import {
 import { ZodError } from 'zod'
 
 import { env } from './env'
+import { confirmParticipant } from './routes/confirm-participant'
 import { confirmTrip } from './routes/confirm-trip'
 import { createTrip } from './routes/create-trip'
 
@@ -18,6 +19,8 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(createTrip)
 
 app.register(confirmTrip)
+
+app.register(confirmParticipant)
 
 app.register(cors, {
   origin: '*',
