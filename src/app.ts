@@ -1,3 +1,4 @@
+import cors from '@fastify/cors'
 import fastify from 'fastify'
 import {
   serializerCompiler,
@@ -17,6 +18,10 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(createTrip)
 
 app.register(confirmTrip)
+
+app.register(cors, {
+  origin: '*',
+})
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
