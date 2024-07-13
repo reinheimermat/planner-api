@@ -29,6 +29,8 @@ Content-Type: application/json
   "ends_at": "2024-07-20 18:00:00"
 }
 
+### GET TRIPS DETAILS
+GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e
 
 # * PARTICIPANTS
 
