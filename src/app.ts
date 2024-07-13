@@ -1,8 +1,19 @@
 import fastify from 'fastify'
-import { env } from './env'
+import {
+  serializerCompiler,
+  validatorCompiler,
+} from 'fastify-type-provider-zod'
 import { ZodError } from 'zod'
 
+import { env } from './env'
+import { createTrip } from './routes/create-trip'
+
 export const app = fastify()
+
+app.setValidatorCompiler(validatorCompiler)
+app.setSerializerCompiler(serializerCompiler)
+
+app.register(createTrip)
 
 app.setErrorHandler((error, request, reply) => {
   if (error instanceof ZodError) {
