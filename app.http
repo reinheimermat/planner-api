@@ -1,0 +1,9 @@
+### POST
+POST http://localhost:3333/trips
+Content-Type: application/json
+
+{
+  "destination": "Paris",
+  "starts_at": "2024-12-01",
+  "ends_at": "2024-12-31"
+}
