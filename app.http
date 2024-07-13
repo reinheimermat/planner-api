@@ -28,3 +28,6 @@ Content-Type: application/json
   "title": "Visita ao MASP",
   "occurs_at": "2024-07-13 08:00:00"
 }
+
+### GET ACTIVITIES
+GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/activities
