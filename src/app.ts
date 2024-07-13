@@ -17,6 +17,7 @@ import { getActivities } from './routes/get-activities'
 import { getLinks } from './routes/get-links'
 import { getParticipants } from './routes/get-participants'
 import { getTripDetails } from './routes/get-trip-details'
+import { getParticipant } from './routes/getParticipant'
 import { updateTrip } from './routes/update-trip'
 
 export const app = fastify()
@@ -45,6 +46,8 @@ app.register(createInvite)
 app.register(updateTrip)
 
 app.register(getTripDetails)
+
+app.register(getParticipant)
 
 app.register(cors, {
   origin: '*',

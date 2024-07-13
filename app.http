@@ -49,6 +49,9 @@ Content-Type: application/json
 ### GET PARTICIPANTS
 GET http://localhost:3333/trips/fee23655-845d-404f-9bcd-b35a91a1881e/participants
 
+### GET PARTICIPANT
+GET http://localhost:3333/participants/666a464b-2f99-44e8-aeb9-3032e9135531
+
 # * ACTIVITIES
 
 ### GET ACTIVITIES
