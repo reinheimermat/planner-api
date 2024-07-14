@@ -4,6 +4,7 @@ import type { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
+import { ClientError } from '../errors/client-error'
 import { dayjs } from '../lib/dayjs'
 import { prisma } from '../lib/prisma'
 
@@ -17,7 +18,7 @@ export async function getActivities(app: FastifyInstance) {
         }),
       },
     },
-    async (request, reply) => {
+    async (request) => {
       const { tripId } = request.params
 
       const trip = await prisma.trip.findUnique({
@@ -34,8 +35,7 @@ export async function getActivities(app: FastifyInstance) {
       })
 
       if (!trip) {
-        reply.status(404)
-        throw new Error('Trip not found')
+        throw new ClientError('Trip not found')
       }
 
       const differenceBetweenTripStartAndEnd = dayjs(trip.created_at).diff(

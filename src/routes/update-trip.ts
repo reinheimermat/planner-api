@@ -5,6 +5,7 @@ import type { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
+import { ClientError } from '../errors/client-error'
 import { prisma } from '../lib/prisma'
 
 export async function updateTrip(app: FastifyInstance) {
@@ -22,7 +23,7 @@ export async function updateTrip(app: FastifyInstance) {
         }),
       },
     },
-    async (request, reply) => {
+    async (request) => {
       const { tripId } = request.params
       const { destination, starts_at, ends_at } = request.body
 
@@ -33,8 +34,7 @@ export async function updateTrip(app: FastifyInstance) {
       })
 
       if (!trip) {
-        reply.status(404)
-        throw new Error('Trip not found')
+        throw new ClientError('Trip not found')
       }
 
       await prisma.trip.update({

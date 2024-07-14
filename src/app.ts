@@ -7,6 +7,7 @@ import {
 import { ZodError } from 'zod'
 
 import { env } from './env'
+import { ErrorHandler } from './error-handler'
 import { confirmParticipant } from './routes/confirm-participant'
 import { confirmTrip } from './routes/confirm-trip'
 import { createActivity } from './routes/create-activity'
@@ -24,6 +25,8 @@ export const app = fastify()
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+
+app.setErrorHandler(ErrorHandler)
 
 app.register(createTrip)
 
